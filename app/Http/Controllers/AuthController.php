@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         $response = [
             'user' => $user,
-            'token'=> $token
+            // 'token'=> $token
         ];
 
         return response($response, 201);
@@ -47,6 +47,7 @@ class AuthController extends Controller
 
         // check email
         $user = User::where('email', $fields['email'])->first();
+        // $name = User::where('name', $fields['name'])->first();
 
         // check password
         if(!$user || !Hash::check($fields['password'], $user->password)){
@@ -59,7 +60,8 @@ class AuthController extends Controller
 
         $response = [
             'user' => $user,
-            'token'=> $token
+            'token'=> $token,
+            'name'=> $user->name,
         ];
 
         return response($response, 201);
