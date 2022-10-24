@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -14,7 +15,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        // return Post::all();
+        $posts = Post::select('posts.id','posts.user_id','posts.content','users.name')
+                ->join('users','posts.user_id','=','users.id')
+                // ->where(['something' => 'something', 'otherThing' => 'otherThing'])
+                ->get();
+        return $posts;
     }
 
     /**
@@ -41,6 +47,10 @@ class PostController extends Controller
     public function show($id)
     {
         //
+    }
+    public function showname($id)
+    {
+        return User::find($id);
     }
 
     /**
