@@ -18,8 +18,9 @@ class PostController extends Controller
         // return Post::all();
         $posts = Post::select('posts.id','posts.user_id','posts.content','users.name')
                 ->join('users','posts.user_id','=','users.id')
-                // ->where(['something' => 'something', 'otherThing' => 'otherThing'])
-                ->get();
+                // ->where(['something' => 'something', 'otherThing' => 'otherThing'])   
+                ->orderBy('posts.id', 'DESC')
+                ->get();             
         return $posts;
     }
 

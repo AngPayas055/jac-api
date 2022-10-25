@@ -25,9 +25,6 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/show/{id}', [ProductController::class, 'show']);
 Route::get('/products/search/{name}', [ProductController::class, 'search']);  
 Route::get('/posts/showname/{id}', [PostController::class, 'showname']);
-Route::post('/posts', [PostController::class, 'store']);
-Route::put('/posts/{id}', [PostController::class, 'update']);
-Route::delete('/posts/{id}', [PostController::class, 'destroy']);
 
 // protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {  
@@ -36,6 +33,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/posts', [PostController::class, 'index']);
+    Route::post('/posts', [PostController::class, 'store']);
+    Route::put('/posts/{id}', [PostController::class, 'update']);
+    Route::delete('/posts/{id}', [PostController::class, 'destroy']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
