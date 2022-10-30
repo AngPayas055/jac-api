@@ -14,7 +14,13 @@ class CommentController extends Controller
      */
     public function index()
     {        
-        return Comments::all();
+        // return Comments::all();
+        $comments = Comments::select('comments.id','comments.comment','comments.post_id','comments.commenter','users.name')
+                ->join('users','comments.commenter','=','users.id')
+                // ->where(['something' => 'something', 'otherThing' => 'otherThing'])   
+                ->orderBy('comments.id', 'DESC')
+                ->get();             
+        return $comments;
     }
 
     /**
