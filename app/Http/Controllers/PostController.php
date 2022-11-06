@@ -15,13 +15,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        // return Post::all();
+        $posts = Post::with('comments');
         $posts = Post::select('posts.id','posts.user_id','posts.content','users.name')
                 ->join('users','posts.user_id','=','users.id')
                 // ->where(['something' => 'something', 'otherThing' => 'otherThing'])   
                 ->orderBy('posts.id', 'DESC')
-                ->get();             
-        return $posts;
+        ->get();
+        return $posts;        
     }
 
     /**
