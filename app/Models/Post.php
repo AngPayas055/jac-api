@@ -12,4 +12,15 @@ class Post extends Model
         'user_id',
         'content',
     ];
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+    // public function customer() {
+    //     return $this->belongsTo(CustomerModel::class);
+    // }
 }
