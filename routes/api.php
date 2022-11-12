@@ -30,6 +30,7 @@ Route::get('/comments', [CommentController::class, 'index']);
 Route::post('/comments', [CommentController::class, 'store']);
 Route::put('/comments/{id}', [CommentController::class, 'update']);
 Route::delete('/comments/{id}', [CommentController::class, 'destroy']);
+Route::get('/users', [PostController::class, 'users']);
 
 // protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {  

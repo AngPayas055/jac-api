@@ -14,12 +14,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $posts = Post::with('comments');
-        $posts = Post::select('posts.id','posts.user_id','posts.content','users.name')
-                ->join('users','posts.user_id','=','users.id')
-                // ->where(['something' => 'something', 'otherThing' => 'otherThing'])   
-                ->orderBy('posts.id', 'DESC')
+    {    
+        $posts = Post::with('comments')
+        ->orderBy('posts.id', 'DESC')
         ->get();
         return $posts;        
     }
@@ -77,5 +74,10 @@ class PostController extends Controller
     public function destroy($id)
     {
         return Post::destroy($id);
+    }
+    public function users()
+    {
+        $user = User::get(['id','name']);
+        return $user;
     }
 }
